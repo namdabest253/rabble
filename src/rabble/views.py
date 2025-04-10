@@ -10,6 +10,6 @@ def index(request):
     return render(request, "rabble/index.html", context)
 
 def profile(request):
-    context = {"username" : str(request.user), "email": str(request.user) + "@example.com"}
+    context = {"username" : str(request.user), "email": str(request.user.email)}
     
     return render(request, "rabble/profile.html", context)
