@@ -2,7 +2,11 @@
 
 {% block content %}
 <p>
-   Welcome {{welcome}}
+    {% if user.is_authenticated %}
+        Welcome {{welcome}}!
+    {% else %}
+        Welcome to Rabble!
+    {% endif %}
 </p>
 <!-- <p>
     <a href="profile">Profile</a>

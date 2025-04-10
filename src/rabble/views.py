@@ -2,10 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    if request.user.is_authenticated:
-        context = {"welcome": str(request.user) + "!"}
-    else:
-        context = {"welcome": "to Rabble!"}
+    context = {"welcome": str(request.user)}
 
     return render(request, "rabble/index.html", context)
 
