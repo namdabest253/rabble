@@ -7,7 +7,7 @@ class User(AbstractUser):
     profile_picture = models.ImageField(blank=True, null=False)
     bio = models.TextField(blank=True, null=True)
     interests = models.TextField(blank=True, null=True)
-    timestamp = models.DateTimeField(default=timezone.now)
+    # timestamp = models.DateTimeField(default=timezone.now)
 
 class Community(models.Model):
     # community_id = models.IntegerField(primary_key=True)

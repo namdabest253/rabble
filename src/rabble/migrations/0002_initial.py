@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("community_identifier", models.TextField(unique=True)),
-                ("timestamp", models.DateTimeField(default=django.utils.timezone.now)),
+                # ("timestamp", models.DateTimeField(default=django.utils.timezone.now)),
                 (
                     "admin_id",
                     models.ForeignKey(
