@@ -29,3 +29,15 @@ Used AI to Write these models:
 PostLike, CommentLike
 
 Prompts used:
+"why is my {% if user.id == post.account_id %} condition never true?"
+
+"in my community i want to have multiple admins how do I do that "
+
+"do i need to do this for the users key in community too? because a user can be in N communities and communities can have M users"
+
+"should the User class have a foreign key to pretty much every other class?"
+
+"so as a reference a class should only have a foreign key to another class if it's owned by that class?"
+
+"would likes have to be its own entity to keep track of user likes?"
+
