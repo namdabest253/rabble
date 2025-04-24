@@ -29,7 +29,12 @@ Used AI to Write these models:
 PostLike, CommentLike
 
 Prompts used:
-"why is my {% if user.id == post.account_id %} condition never true?"
+"what does pk stand for in this:
+path("!<slug:identifier>/<int:pk>/", views.post_detail, name="post-detail"),"
+
+"can you explain wat this error means: Reverse for 'post-detail' with arguments '('', 1)' not found. 1 pattern(s) tried: ['!(?P<identifier>[-a-zA-Z0-9_]+)/(?P<pk>[0-9]+)/\\Z']"
+
+"the only community foreign key i have in subrabble is community_id which is its primary key and is a self incrementing number. how do I find the community_id from the community_indentifier"
 
 "in my community i want to have multiple admins how do I do that "
 
@@ -41,3 +46,4 @@ Prompts used:
 
 "would likes have to be its own entity to keep track of user likes?"
 
+"why is my {% if user.id == post.account_id %} condition never true?"
