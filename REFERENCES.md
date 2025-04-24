@@ -23,3 +23,9 @@ preferred_name = models.TextField(blank=True, null=True)"
 "how do i make a model have a foreign key to itself?"
 
 "how do i make it so my admin page shows the models i've created?"
+
+HW3:
+Used AI to Write these models:
+PostLike, CommentLike
+
+Prompts used:

@@ -1,24 +1,46 @@
 {% extends "rabble/base.html" %}
 
 {% block title %}
-  {% if form.instance.pk %}Edit Post{% else %}New Post{% endif %}
+  {% if user.is_authenticated %}
+    {% if form.instance.pk %}
+      {% if user == form.instance.account_id %}
+        Edit Post
+      {% else %}
+        You are not authorized to edit this post.
+      {% endif %}
+    {% else %}
+      New Post
+    {% endif %}
+  {% else %}
+    Please log in
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-  <h2>
-    {% if form.instance.pk %}
-      Edit Post
+  {% if user.is_authenticated %}
+    {% if form.instance.pk and user != form.instance.account_id %}
+      <div class="alert alert-danger">
+        You are not authorized to edit this post.
+      </div>
     {% else %}
-      New Post in !{{ subrabble.identifier }}
-    {% endif %}
-  </h2>
+      <h2>
+        {% if form.instance.pk %}
+          Edit Post
+        {% else %}
+          New Post in !{{ subrabble.identifier }}
+        {% endif %}
+      </h2>
 
-  <form method="post" class="mt-4">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-login">
-      {% if form.instance.pk %}Save Changes{% else %}Create Post{% endif %}
-    </button>
-    <a href="{% url 'subrabble-detail' subrabble.identifier %}" class="btn btn-secondary ms-2">Cancel</a>
-  </form>
+      <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-login">
+          {% if form.instance.pk %}Save Changes{% else %}Create Post{% endif %}
+        </button>
+        <a href="{% url 'subrabble-detail' subrabble.identifier %}" class="btn btn-secondary ms-2">Cancel</a>
+      </form>
+    {% endif %}
+  {% else %}
+    <p class="alert alert-warning">Please log in to create or edit posts.</p>
+  {% endif %}
 {% endblock %}

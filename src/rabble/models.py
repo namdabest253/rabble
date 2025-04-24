@@ -87,7 +87,7 @@ class CommentLike(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        unique_together = ("user", "comment")  # Prevent double-liking
+        unique_together = ("user", "comment")
 
     def __str__(self):
         return f"{self.user.username} liked comment {self.comment.pk}"

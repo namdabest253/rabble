@@ -3,42 +3,48 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <div class="mb-4 d-flex justify-content-between align-items-center">
-        <a href="{% url 'subrabble-detail' subrabble.identifier %}" class="text-decoration-none text-muted">
-            ← Back to !{{ subrabble.identifier }} — {{ subrabble.title }}
-        </a>
-    </div>
-
-    <div class="mb-4">
-        <h2>{{ post.title }}</h2>
-        <p class="text-muted">By {{ post.account_id.username }}</p>
-        <p>{{ post.body }}</p>
-
-        <div class="d-flex justify-content-start align-items-center gap-3 mt-4">
-            <span>👍 {{ post.likes.count }}</span>
-            <span>💬 {{ post.comments.count }}</span>
-            <a href="{% url 'post-edit' subrabble.identifier post.pk %}" class="btn btn-outline-secondary btn-sm ms-2">
-                Edit Post
+    {% if user.is_authenticated %}
+        <div class="mb-4 d-flex justify-content-between align-items-center">
+            <a href="{% url 'subrabble-detail' subrabble.identifier %}" class="text-decoration-none text-muted">
+                ← Back to !{{ subrabble.identifier }} — {{ subrabble.title }}
             </a>
         </div>
-    </div>
 
-    <hr>
+        <div class="mb-4">
+            <h2>{{ post.title }}</h2>
+            <p class="text-muted">By {{ post.account_id.username }}</p>
+            <p>{{ post.body }}</p>
 
-    <h4>Comments</h4>
+            <div class="d-flex justify-content-start align-items-center gap-3 mt-4">
+                <span>👍 {{ post.likes.count }}</span>
+                <span>💬 {{ post.comments.count }}</span>
+                {% if user == post.account_id %}
+                <a href="{% url 'post-edit' subrabble.identifier post.pk %}" class="btn btn-outline-secondary btn-sm ms-2">
+                    Edit Post
+                </a>
+                {% endif %}
+            </div>
+        </div>
 
-    {% if post.comments.count > 0 %}
-        <ul class="list-group mb-3">
-            {% for comment in post.comments.all %}
-                <li class="list-group-item">
-                    <p>{{ comment.body }}</p>
-                    <div class="d-flex justify-content-between">
-                        <small class="text-muted">By {{ comment.account_id.username }}</small>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+        <hr>
+
+        <h4>Comments</h4>
+
+        {% if post.comments.count > 0 %}
+            <ul class="list-group mb-3">
+                {% for comment in post.comments.all %}
+                    <li class="list-group-item">
+                        <p>{{ comment.body }}</p>
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">By {{ comment.account_id.username }}</small>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endif %}
     {% else %}
-        <p>No comments yet. Be the first to comment!</p>
+        <p class="alert alert-warning">Please log in to view posts.</p>
     {% endif %}
 {% endblock %}
