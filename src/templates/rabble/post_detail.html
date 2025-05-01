@@ -16,7 +16,50 @@
             <p>{{ post.body }}</p>
 
             <div class="d-flex justify-content-start align-items-center gap-3 mt-4">
-                <span>👍 {{ post.likes.count }}</span>
+                <button id="like-btn" class="btn btn-sm {% if user_has_liked %}text-primary{% endif %}">
+                    👍 <span id="like-count">{{ post.likes.count }}</span>
+                </button>             
+                <script>
+                    function getCookie(name) {
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            for (let cookie of document.cookie.split(';')) {
+                                cookie = cookie.trim();
+                                if (cookie.startsWith(name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+                    
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const likeBtn = document.getElementById("like-btn");
+                        const likeCount = document.getElementById("like-count");
+                        const csrftoken = getCookie('csrftoken');
+                        const username = "{{ user.username }}";
+                    
+                        if (likeBtn) {
+                            console.log("Like button clicked!");
+                            likeBtn.addEventListener("click", function () {
+                                fetch("{% url 'post-like-toggle' subrabble.identifier post.pk %}", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "X-CSRFToken": csrftoken,
+                                    },
+                                    body: JSON.stringify({ user: username })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    likeCount.innerText = data.like_count;
+                                    likeBtn.classList.toggle("text-primary", data.liked);
+                                });
+                            });
+                        }
+                    });
+                    </script>
                 <span>💬 {{ post.comments.count }}</span>
                 {% if user == post.account_id %}
                 <a href="{% url 'post-edit' subrabble.identifier post.pk %}" class="btn btn-outline-secondary btn-sm ms-2">
@@ -48,3 +91,4 @@
         <p class="alert alert-warning">Please log in to view posts.</p>
     {% endif %}
 {% endblock %}
+    

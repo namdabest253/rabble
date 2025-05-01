@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$870000$L2Fg07J0lpxDD5rqp4L8J5$zzet3XSDR02WixoEJwQFog/e9EmpmPQ8/EfOU5Rtpq4=",
-        "last_login": "2025-04-16T19:48:06.896Z",
+        "last_login": "2025-05-01T06:10:11.814Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -130,10 +130,36 @@
     "pk": 2,
     "fields": {
         "community_identifier": "default",
-        "user_id": [102],
         "owner_id": 102,
-        "admin_id": [102],
-        "timestamp": "2025-04-23T05:34:52Z"
+        "timestamp": "2025-04-23T05:34:52Z",
+        "user_id": [
+            102,
+            103,
+            104,
+            105,
+            106
+        ],
+        "admin_id": [
+            102
+        ]
+    }
+},
+{
+    "model": "rabble.community",
+    "pk": 3,
+    "fields": {
+        "community_identifier": "test",
+        "owner_id": 102,
+        "timestamp": "2025-04-24T06:29:55Z",
+        "user_id": [
+            102,
+            103,
+            105
+        ],
+        "admin_id": [
+            102,
+            103
+        ]
     }
 },
 {
@@ -142,7 +168,8 @@
     "fields": {
         "community_id": 2,
         "identifier": "cs-courses",
-        "description": "",
+        "title": "cs courses",
+        "description": "Talk about CS classes here",
         "privacy": false,
         "anonymous": false,
         "timestamp": "2025-04-23T05:36:19Z"
@@ -154,7 +181,8 @@
     "fields": {
         "community_id": 2,
         "identifier": "python",
-        "description": "",
+        "title": "python",
+        "description": "Python stuff here!",
         "privacy": false,
         "anonymous": false,
         "timestamp": "2025-04-23T05:36:34Z"
@@ -166,7 +194,8 @@
     "fields": {
         "community_id": 2,
         "identifier": "web-dev",
-        "description": "",
+        "title": "web dev",
+        "description": "Web dev here!",
         "privacy": false,
         "anonymous": false,
         "timestamp": "2025-04-23T05:36:40Z"
@@ -179,7 +208,7 @@
         "account_id": 103,
         "subRabble_id": 1,
         "title": "What is a Linked List?",
-        "body": "How do I make a Linked List in C?",
+        "body": "bruh how do I make a linked list in c",
         "privacy": false,
         "anonymous": false,
         "timestamp": "2025-04-23T19:56:55Z"
@@ -212,6 +241,71 @@
     }
 },
 {
+    "model": "rabble.post",
+    "pk": 4,
+    "fields": {
+        "account_id": 1,
+        "subRabble_id": 2,
+        "title": "can a python eat an anaconda",
+        "body": "who eats who",
+        "privacy": false,
+        "anonymous": false,
+        "timestamp": "2025-04-24T09:10:41.656Z"
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 5,
+    "fields": {
+        "account_id": 1,
+        "subRabble_id": 3,
+        "title": "join my telegram",
+        "body": "you'll get free bitcoin",
+        "privacy": false,
+        "anonymous": false,
+        "timestamp": "2025-04-24T09:11:37.374Z"
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 6,
+    "fields": {
+        "account_id": 1,
+        "subRabble_id": 1,
+        "title": "ima drop out",
+        "body": "venmo me money",
+        "privacy": false,
+        "anonymous": false,
+        "timestamp": "2025-04-24T09:17:19.379Z"
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 7,
+    "fields": {
+        "account_id": 1,
+        "subRabble_id": 3,
+        "title": "how to center a div",
+        "body": "how to center a div",
+        "privacy": false,
+        "anonymous": false,
+        "timestamp": "2025-04-24T09:18:00.013Z"
+    }
+},
+{
+    "model": "rabble.post",
+    "pk": 8,
+    "fields": {
+        "account_id": 1,
+        "subRabble_id": 1,
+        "title": "nathan is balding",
+        "body": "he only ate 15 pieces sushi",
+        "privacy": false,
+        "anonymous": false,
+        "timestamp": "2025-04-24T23:36:55.743Z"
+    }
+},
+{
     "model": "rabble.comment",
     "pk": 1,
     "fields": {
@@ -227,10 +321,10 @@
     "model": "rabble.comment",
     "pk": 2,
     "fields": {
-        "account_id": 105,
+        "account_id": 103,
         "post_id": 3,
         "parent_comment_id": null,
-        "body": "我也爱她!",
+        "body": "我也爱他!",
         "anonymous": false,
         "timestamp": "2025-04-23T20:01:14Z"
     }
@@ -245,6 +339,78 @@
         "body": "GOAT 🐐",
         "anonymous": false,
         "timestamp": "2025-04-23T20:01:52Z"
+    }
+},
+{
+    "model": "rabble.postlike",
+    "pk": 1,
+    "fields": {
+        "user": 102,
+        "post": 3,
+        "timestamp": "2025-04-24T08:25:11Z"
+    }
+},
+{
+    "model": "rabble.postlike",
+    "pk": 2,
+    "fields": {
+        "user": 103,
+        "post": 3,
+        "timestamp": "2025-04-24T08:25:21Z"
+    }
+},
+{
+    "model": "rabble.postlike",
+    "pk": 3,
+    "fields": {
+        "user": 104,
+        "post": 1,
+        "timestamp": "2025-04-24T08:25:35Z"
+    }
+},
+{
+    "model": "rabble.postlike",
+    "pk": 4,
+    "fields": {
+        "user": 105,
+        "post": 2,
+        "timestamp": "2025-04-24T08:25:43Z"
+    }
+},
+{
+    "model": "rabble.postlike",
+    "pk": 5,
+    "fields": {
+        "user": 106,
+        "post": 1,
+        "timestamp": "2025-04-24T08:25:48Z"
+    }
+},
+{
+    "model": "rabble.commentlike",
+    "pk": 1,
+    "fields": {
+        "user": 104,
+        "comment": 3,
+        "timestamp": "2025-04-24T08:26:06Z"
+    }
+},
+{
+    "model": "rabble.commentlike",
+    "pk": 2,
+    "fields": {
+        "user": 106,
+        "comment": 1,
+        "timestamp": "2025-04-24T08:26:14Z"
+    }
+},
+{
+    "model": "rabble.commentlike",
+    "pk": 3,
+    "fields": {
+        "user": 103,
+        "comment": 2,
+        "timestamp": "2025-04-24T08:26:21Z"
     }
 }
 ]

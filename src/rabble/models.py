@@ -26,7 +26,7 @@ class subRabble(models.Model):
     title = models.TextField()
     description = models.TextField(blank=True, null=True)
     privacy = models.BooleanField()
-    annonymous = models.BooleanField()
+    anonymous = models.BooleanField()
     timestamp = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.identifier
