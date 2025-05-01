@@ -142,8 +142,19 @@ def post_detail(request, identifier, pk):
         "user_has_liked": user_has_liked
     })
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])  # Allow GET so we can override its response
 def toggle_like(request, identifier, pk):
+    if request.method == 'GET':
+        return Response({
+            "usage": {
+                "user": "user1"
+            },
+            "description":{
+                "liked": True,
+                "like_count": 12
+            }
+        })
+
     username = request.data.get("user")
     if not username:
         return Response({"error": "User is required"}, status=400)
@@ -165,3 +176,4 @@ def toggle_like(request, identifier, pk):
 
     like_count = post.likes.count()
     return Response({"liked": liked, "like_count": like_count})
+
