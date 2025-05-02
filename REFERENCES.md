@@ -47,3 +47,37 @@ path("!<slug:identifier>/<int:pk>/", views.post_detail, name="post-detail"),"
 "would likes have to be its own entity to keep track of user likes?"
 
 "why is my {% if user.id == post.account_id %} condition never true?"
+
+HW4:
+https://www.django-rest-framework.org/api-guide/responses/
+https://www.django-rest-framework.org/api-guide/views/
+https://www.django-rest-framework.org/tutorial/2-requests-and-responses/
+https://docs.djangoproject.com/en/5.2/ref/request-response/
+https://dextrop.medium.com/creating-a-custom-response-class-for-django-rest-framework-4c1a9a65561b
+https://dextrop.medium.com/creating-a-custom-response-class-for-django-rest-framework-4c1a9a65561b
+https://docs.djangoproject.com/en/5.2/howto/csrf/
+
+Prompts Used:
+"Why does my api json show this:
+{
+    "detail": "Method \"GET\" not allowed."
+}"
+
+"What does this error mean:
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W005) URL namespace 'admin' isn't unique. You may not be able to reverse all URLs in this namespace
+rabble.Community.user_id: (fields.W340) null has no effect on ManyToManyField."
+
+"how do i make my fixture.json up to date with my sql database"
+
+"how come running python3 manage.py testserver rabble-fixture.json and python3 manage.py runserver show me different things on my website?"
+
+"Explain how stringrelatedfield functions works"
+
+"im getting:
+MultipleObjectsReturned at /api/subRabbles/!cs-courses/posts/
+get() returned more than one Post -- it returned 3!
+
+why is this an issue because subRabbles also returns multiple things."
