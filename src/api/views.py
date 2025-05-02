@@ -142,17 +142,30 @@ def post_detail(request, identifier, pk):
         "user_has_liked": user_has_liked
     })
 
-@api_view(['POST', 'GET'])  # Allow GET so we can override its response
+@api_view(['POST', 'GET'])
 def toggle_like(request, identifier, pk):
+    try:
+        subrabble = subRabble.objects.get(identifier=identifier)
+        post = Post.objects.get(pk=pk, subRabble_id=subrabble)
+    except (subRabble.DoesNotExist, Post.DoesNotExist):
+        return Response(status=404)
+
     if request.method == 'GET':
+        user = request.user
+        like_count = post.likes.count()
+        liked = False
+
+        if user.is_authenticated:
+            liked = PostLike.objects.filter(post=post, user=user).exists()
+
         return Response({
-            "usage": {
-                "user": "user1"
-            },
-            "description":{
-                "liked": True,
-                "like_count": 12
-            }
+            "user": user.username if user.is_authenticated else None,
+            "liked": liked,
+            "like_count": like_count,
+            # "usage": {
+            #     "user": "user1"
+            # },
+            # "description": "Send a POST request with {'user': <username>} to toggle like."
         })
 
     username = request.data.get("user")
