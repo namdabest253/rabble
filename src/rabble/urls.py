@@ -10,7 +10,6 @@ urlpatterns = [
   path("!<slug:identifier>/new", views.post_create, name="post-create"),
   path("!<slug:identifier>/<int:pk>/edit", views.post_edit, name="post-edit"),
   path("profile", views.profile, name="profile"),
-  path("admin/", admin.site.urls),
-  # path("", include("rabble.urls")),
+  # path("admin/", admin.site.urls),
   path("api/", include("api.urls"))
 ]

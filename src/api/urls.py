@@ -11,5 +11,3 @@ urlpatterns = [
     path('subRabbles/!<str:identifier>/posts/<int:pk>/', views.post_detail, name='api-post-detail'),
     path("subRabbles/!<str:identifier>/posts/<int:pk>/likes", views.toggle_like, name="post-like-toggle"),
 ]
-
-学生= ['海伦', '汤姆']
