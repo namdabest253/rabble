@@ -81,3 +81,18 @@ MultipleObjectsReturned at /api/subRabbles/!cs-courses/posts/
 get() returned more than one Post -- it returned 3!
 
 why is this an issue because subRabbles also returns multiple things."
+
+HW5:
+
+https://factoryboy.readthedocs.io/en/stable/orms.html#django
+https://docs.djangoproject.com/en/5.2/topics/testing/tools/
+https://pytest-django.readthedocs.io/en/latest/
+
+Only used the provided document for CL
+
+Prompts Used:
+
+"can you explain the lambda functions inside this:
+username = factory.Sequence(lambda n: f"user{n}")"
+
+"do i need to include through tables in my model.py in my factories.py"
