@@ -8,23 +8,20 @@ from rabble.tests.factories import (
 from rest_framework import status
 from rest_framework.test import APIClient
 
-
 @pytest.fixture
 def api_client():
     return APIClient()
-
 
 @pytest.mark.django_db
 def test_subrabble_get(api_client):
     subrabble = SubRabbleFactory()
 
-    url = f"/api/subRabbles/!{subrabble.identifier}/"
+    url = reverse("api-subRabble-detail", args=[subrabble.identifier])
     response = api_client.get(url)
 
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["identifier"] == subrabble.identifier
     assert response.json()["title"] == subrabble.title
-
 
 @pytest.mark.django_db
 def test_post_post(api_client):
@@ -33,7 +30,7 @@ def test_post_post(api_client):
 
     api_client.force_authenticate(user=user)
 
-    url = f"/api/subRabbles/!{subrabble.identifier}/posts/"
+    url = reverse("api-post-list", args=[subrabble.identifier])
     data = {
         "title": "New API Post",
         "body": "Body from API",
@@ -50,11 +47,10 @@ def test_post_post(api_client):
     assert post.subRabble_id == subrabble
     assert post.account_id == user
 
-
 @pytest.mark.django_db
 def test_post_patch(api_client):
     post = PostFactory(title="Old Title")
-    url = f"/api/subRabbles/!{post.subRabble_id.identifier}/posts/{post.pk}/"
+    url = reverse("api-post-detail", args=[post.subRabble_id.identifier, post.pk])
 
     api_client.force_authenticate(user=post.account_id)
 
