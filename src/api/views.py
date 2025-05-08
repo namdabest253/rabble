@@ -40,9 +40,10 @@ def post_list(request, identifier):
         serializer = PostSerializer(posts, many=True, context={'request' : request})
         return Response(serializer.data)
     elif request.method == 'POST':
+        subrabble = subRabble.objects.get(identifier=identifier)
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(account_id=request.user, subRabble_id=subrabble)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
