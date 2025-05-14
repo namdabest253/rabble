@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import warnings
 import environ
 import os
 import io
@@ -16,7 +17,9 @@ from google.cloud import secretmanager
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(
+    SECRET_KEY=(str, "UNSECURE_KEY"),
+    DEBUG=(bool, True))
 env_file = os.path.join(BASE_DIR, '.env')
 
 if os.path.isfile(env_file):
@@ -31,7 +34,7 @@ elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     payload = client.access_secret_version(name=name).payload.data.decode('UTF8')
     env.read_env(io.StringIO(payload))
 else:
-    raise Exception('No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.')
+    warnings.warn("No local .env, GOOGLE_CLOUD_PROJECT, or Heroku detected. Using unsecure values!")
 
 
 SECRET_KEY = env("SECRET_KEY")
