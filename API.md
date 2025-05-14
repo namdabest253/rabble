@@ -1,12 +1,13 @@
 ## POST: /api/subrabbles/!cs-courses/posts
-
     {
-        "id": 3,
-        "account_id": 105,
-        "subRabble_id": 1,
-        "title": "I love Adam Shaw",
-        "body": "Goat",
+        "title": "TEST",
+        "body": "test",
         "privacy": false,
-        "anonymous": false,
-        "timestamp": "2025-04-23T19:59:10Z"
+        "anonymous": false
+    }
+
+## PATCH api/subrabbles/!cs-courses/posts/1
+    {
+    "title": "Fixed It",
+    "body": "patch test"
     }

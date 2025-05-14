@@ -96,3 +96,7 @@ Prompts Used:
 username = factory.Sequence(lambda n: f"user{n}")"
 
 "do i need to include through tables in my model.py in my factories.py"
+
+HW6 References:
+
+Only used the provided PDF (“Deploying to Google Cloud Platform Download Deploying to Google Cloud Platform”) to work on this homework
