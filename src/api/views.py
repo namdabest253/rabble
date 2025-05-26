@@ -41,9 +41,20 @@ def post_list(request, identifier):
         return Response(serializer.data)
     elif request.method == 'POST':
         subrabble = subRabble.objects.get(identifier=identifier)
+        
+        # Get account_id from request data
+        account_id = request.data.get('account_id')
+        if not account_id:
+            return Response({'error': 'account_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = User.objects.get(pk=account_id)
+        except User.DoesNotExist:
+            return Response({'error': 'User with provided account_id does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(account_id=request.user, subRabble_id=subrabble)
+            serializer.save(account_id=user, subRabble_id=subrabble)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
