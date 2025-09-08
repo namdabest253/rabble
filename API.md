@@ -1,5 +1,6 @@
 ## POST: /api/subrabbles/!cs-courses/posts
     {
+        "account_id": 1,
         "title": "TEST",
         "body": "test",
         "privacy": false,
